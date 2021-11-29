@@ -1,0 +1,3 @@
+dynamicHistogram/')
+# def dynamicHistogram():
+#     return    

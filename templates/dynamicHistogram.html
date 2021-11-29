@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html style="height: 100%" lang="zh" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>ECharts</title>
+	<!-- 引入jquery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- 引入 echarts.js -->
+	<script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.js"></script>
+</head>
+ 
+<body style="height: 100%; margin: 0">
+	<div id="container" style="height: 100%"></div>
+ 
+ 
+	<script type="text/javascript">
+		var chartDom = document.getElementById('container');
+		var myChart = echarts.init(chartDom);
+		var option;
+ 
+		var updateFrequency = 2000;
+		var dimension = 0;
+ 
+		var countryColors = [
+			'#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+			'#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+			'#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0',
+			'#ff7f50', '#87cefa', '#da70d6', '#32cd32', '#6495ed',
+			'#ff69b4', '#ba55d3', '#cd5c5c', '#ffa500', '#40e0d0',
+			'#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700',
+			'#6b8e23', '#ff00ff', '#3cb371', '#b8860b', '#30e0e0'
+		];
+ 
+		$.when(
+		    $.getJSON('data.json')
+		).done(function (res) {
+		    var data = res;
+		    var years = [];
+		    for (var i = 0; i < data.length; ++i) {
+		        if (years.length === 0 || years[years.length - 1] !== data[i][4]) {
+		            years.push(data[i][4]);
+		        }
+		    }
+ 
+		    function getFlag(countryName) {
+		        if (!countryName) {
+		            return '';
+		        }
+		        return (flags.find(function (item) {
+		            return item.country === countryName;
+		        }) || {}).emoji;
+		    }
+		    var startIndex = 10;
+		    var startYear = years[startIndex];
+ 
+		    var option = {
+		        grid: {
+		            top: 10,
+		            bottom: 30,
+		            left: 150,
+		            right: 80
+		        },
+		        xAxis: {
+		            max: 'dataMax',
+		            label: {
+		                formatter: function (n) {
+		                    return Math.round(n);
+		                }
+		            }
+		        },
+		        dataset: {
+		            source: data.slice(1).filter(function (d) {
+		                return d[4] === startYear;
+		            })
+		        },
+		        yAxis: {
+		            type: 'category',
+		            inverse: true,
+		            max: 10,
+		            axisLabel: {
+		                show: true,
+		                textStyle: {
+		                    fontSize: 14
+		                },
+		                formatter: function (value) {
+		                    return value + '{flag|' + getFlag(value) + '}';
+		                },
+		                rich: {
+		                    flag: {
+		                        fontSize: 25,
+		                        padding: 5
+		                    }
+		                }
+		            },
+		            animationDuration: 300,
+		            animationDurationUpdate: 300
+		        },
+		        series: [{
+		            realtimeSort: true,
+		            seriesLayoutBy: 'column',
+		            type: 'bar',
+		            itemStyle: {
+		                color: function (param) {
+		                    return countryColors[param.value[3]] || '#5470c6';
+		                }
+		            },
+		            encode: {
+		                x: dimension,
+		                y: 3
+		            },
+		            label: {
+		                show: true,
+		                precision: 1,
+		                position: 'right',
+		                valueAnimation: true,
+		                fontFamily: 'monospace'
+		            }
+		        }],
+		        // Disable init animation.
+		        animationDuration: 0,
+		        animationDurationUpdate: updateFrequency,
+		        animationEasing: 'linear',
+		        animationEasingUpdate: 'linear',
+		        graphic: {
+		            elements: [{
+		                type: 'text',
+		                right: 160,
+		                bottom: 60,
+		                style: {
+		                    text: startYear,
+		                    font: 'bolder 80px monospace',
+		                    fill: 'rgba(100, 100, 100, 0.25)'
+		                },
+		                z: 100
+		            }]
+		        }
+		    };
+ 
+		    // console.log(option);
+		    myChart.setOption(option);
+ 
+		    for (var i = startIndex; i < years.length - 1; ++i) {
+		        (function (i) {
+		            setTimeout(function () {
+		                updateYear(years[i + 1]);
+		            }, (i - startIndex) * updateFrequency);
+		        })(i);
+		    }
+ 
+		    function updateYear(year) {
+		        var source = data.slice(1).filter(function (d) {
+		            return d[4] === year;
+		        });
+		        option.series[0].data = source;
+		        option.graphic.elements[0].style.text = year;
+		        myChart.setOption(option);
+		    }
+		})
+ 
+		option && myChart.setOption(option);
+ 
+	</script>
+</body>
+</html>

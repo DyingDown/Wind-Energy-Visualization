@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <title>BP能源数据可视化</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.js"></script>
+</head>
+
+<body>
+  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+	<center>
+    <h1>风能堆叠图</h1>
+    <!-- <form id="form" name="form" method='POST' action='/stack/' style="text-alige:left">
+      <h2>请输入年份（2007~2020）:
+        <input type="text" name="name" style="height:30px;width:160px;font-size:30px;">
+        <input type="submit" value="点击查询" >
+      </h2>
+    </form> -->
+    <div id="main" style="width:1500px;height:750px;"></div>
+    <!-- ECharts单文件引入 -->
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts图表
+        var myChart = echarts.init(document.getElementById('main'));
+        var option;
+    option = {
+  title: {
+    text: 'Stacked Area Chart'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['北美', '中南美', '欧洲', '独联体', '中东', '非洲', '亚太']
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: {{years}}
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: '北美',
+      type: 'line',
+      stack:'Total',
+
+      areaStyle:{},
+      emphasis: {
+        focus: 'series'
+      },
+      data: {{Total_North_America}}
+    },
+    {
+      name: '中南美',
+      type: 'line',
+      stack:'Total',
+
+      areaStyle:{},
+      emphasis: {
+        focus: 'series'
+      },
+      data:  {{Total_S_Cent_America}}
+    },
+    {
+      name: '欧洲',
+      type: 'line',
+      stack:'Total',
+
+      areaStyle:{},
+      emphasis: {
+        focus: 'series'
+      },
+      data:  {{Total_Europe}}
+    },
+    {
+      name: '独联体',
+      type: 'line',
+      stack:'Total',
+
+      areaStyle:{},
+      emphasis: {
+        focus: 'series'
+      },
+      data:  {{Total_CIS}}
+    },
+    {
+      name: '中东',
+      type: 'line',
+      stack:'Total',
+
+      areaStyle:{},
+      emphasis: {
+        focus: 'series'
+      },
+      data:  {{Total_Middle_East}}
+    },
+    {
+      name: '非洲',
+      type: 'line',
+      stack:'Total',
+
+      areaStyle:{},
+      emphasis: {
+        focus: 'series'
+      },
+      data:  {{Total_Africa}}
+    },
+    {
+      name: '亚太',
+      type: 'line',
+      stack:'Total',
+      areaStyle:{},
+      emphasis: {
+        focus: 'series'
+      },
+      data:  {{Total_Asia_Pacific}}
+    }
+  ]
+};
+        myChart.setOption(option);
+    </script>
+	</center>
+</body>
+</html>

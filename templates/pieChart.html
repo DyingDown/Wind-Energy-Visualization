@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>全球水电装机容量数据可视化</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.js"></script>
+</head>
+
+<body>
+  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+	<center>
+    <h1>风能饼图</h1>
+    <form id="form" name="form" method='POST' action='/pieChart/'>
+      <h2>请输入年份（1965~2020）:
+        <input type="text" name="name" style="height:30px;width:160px;font-size:30px;">
+        <input type="submit" value="点击查询">
+      </h2>
+    </form>
+    <div id="main" style="width:1500px;height:750px;"></div>
+    <!-- ECharts单文件引入 -->
+    <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts图表
+      var myChart = echarts.init(document.getElementById('main'));
+      var option;
+      // 为echarts对象加载数据
+      option = {
+        tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          top: '5%',
+          left: 'center'
+        },
+        series: [
+          {
+            name: 'Access From',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: '#fff',
+              borderWidth: 2
+            },
+            label: {
+              show: false,
+              position: 'center'
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: '40',
+                fontWeight: 'bold'
+              }
+            },
+            labelLine: {
+              show: false
+            },
+            data: [
+              <!--Total_North_America=df_year[0],Total_S_Cent_America=df_year[1],Total_Europe=df_year[2],Total_CIS=df_year[3],Total_Middle_East=df_year[4],Total_Africa=df_year[5],Total_Asia_Pacific=df_year[6])-->
+              { 
+                value: {{Total_North_America}}, 
+                name: '北美' 
+              },
+              { value: {{Total_S_Cent_America}}, name: '中南美' },
+              { value: {{Total_Europe}}, name: '欧洲' },
+              { value: {{Total_CIS}}, name: '独联体' },
+              { value: {{Total_Middle_East}}, name: '中东' },
+              { value: {{Total_Africa}}, name: '非洲' },
+              { value: {{Total_Asia_Pacific}}, name: '亚太' },
+            ]
+          }
+        ]
+      };
+      myChart.setOption(option);
+    </script>
+	</center>
+  <script>
+    document.getElementsByTagName('h1')[0].innerHTML = {{Year}} + "年风能饼图"
+  </script>
+</body>
+</html>
