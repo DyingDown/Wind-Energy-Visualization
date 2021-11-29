@@ -6,7 +6,7 @@ def get_data_area(sheetname='Hydro Generation - TWh'):
     df_area=df.loc[['Total North America','Total S. & Cent. America','Total Europe',
                     'Total CIS','Total Middle East','Total Africa','Total Asia Pacific']]
     
-    # df_area=df_area.iloc[:,:-5]
+    df_area=df_area.iloc[:,:-5]
     return df_area
 
 #得到某一年的数据，默认为2020年
@@ -31,7 +31,7 @@ def get_country_data(sheetname='Sheet1'):
     #         initalYear += 1
     for j in range(1, df.columns.size):
         for i in range(1, df.shape[0]):
-            datas.append({'country':df.iloc[i, 0], 'data':df.iloc[i, j], 'year': df.iloc[0, j]})
+            datas.append([df.iloc[i, 0], df.iloc[i, j], df.iloc[0, j]])
     # print(datas)
     res = json.dumps(datas, ensure_ascii=False)
     print(res)

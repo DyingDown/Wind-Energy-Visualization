@@ -1,5 +1,5 @@
-from flask import Flask, request, render_template, url_for
-# from flask.helpers import url_for
+from flask import Flask, request, render_template
+from flask.helpers import url_for
 from werkzeug.utils import redirect
 from getdata import get_data_year,get_data_area
 
@@ -48,11 +48,15 @@ def histogram():
 
 @app.route('/dynamicHistogram/', methods=['GET', 'POST'])
 def dynamicHistogram():
-    params = request.json if request.method == "POST" else request.args
+#     params = request.json if request.method == "POST" else request.args
 
-    # if request.method == "GET":
+#     # if request.method == "GET":
         
     return  render_template('dynamicHistogram.html')
+
+@app.route('/team/')
+def team():
+    return render_template('team.html')
 
 if __name__ == '__main__':
    app.run(host='127.0.0.1', port=8080, debug=True)

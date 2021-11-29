@@ -4,18 +4,62 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=h, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home Page</title>
+    <!-- <title>Document</title><link href="https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/bdorz/baidu.min.css" rel="stylesheet" type="text/css" /> -->
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <link rel='stylesheet', href='/static/font-awesome/all.min.css'>
+    <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css"> -->
 </head>
 <body>
-    <center>
-        <h1>BP风能源可视化分析</h1>
-        <ul>
-            <li><a href="/pieChart/">饼状图</a></li>
-            <li><a href="/stack/">堆叠图</a></li>
-            <li><a href="/histogram/">柱状图</a></li>
-            <li><a href="/dynamicHistogram/">动态柱状图</a></li>
+    <div id="head">
+        <div id="u1">
+            <a class="mnav" href="/" >首页</a>
+            <a class="mnav" href="/pieChart/">饼状图</a></a>
+            <a class="mnav" href="/stack/">堆叠图</a></a>
+            <a class="mnav" href="/histogram/">柱状图</a></a>
+            <a class="mnav" href="/dynamicHistogram/">动态柱状图</a>
+            <a class="mnav" href="/team/">人员</a>
+        </div>
+    </div>
+    <div id="content">
+        <h1 id="title">全球风力发电数据可视化分析</h1>
+        <p>应用Python爬虫，Flask框架，Echart等技术实现</p>
+        <ul id="buttons">
+            
+            <li class="bt">
+                <a href="/pieChart/">
+                    <i class="fas fa-chart-pie"></i>
+                    <p class="desc">饼图</p>
+                </a>
+            </li>
+            <li class="bt">
+                <a href="/stack/">
+                    <i class="fas fa-chart-area"></i>
+                    <p class="desc">堆叠图</p>
+                </a>
+            </li>
+            <li class="bt">
+                <a href="/histogram/">
+                    <i class="fas fa-chart-bar"></i>
+                    
+                    <p class="desc">柱状图</p>
+                </a>
+            </li>
+            <li class="bt">
+                <a href="/team/">
+                    <i class="fas fa-users"></i>
+                    
+                    <p class="desc">团队成员</p>
+                </a>
+            </li>
         </ul>
-    </center>
-    
+    </div>
+    <div id="footer">
+        <center>
+            <p>©Copyright 机械工程学院，18能源与动力工程02班 第八组</p>
+            <p>MIT License</p>
+        </center>
+    </div>
+
 </body>
 </html>

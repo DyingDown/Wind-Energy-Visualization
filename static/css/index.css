@@ -1,0 +1,110 @@
+body {
+    margin: 0
+}
+@font-face {
+    font-family: "fontawesome";
+    src: url("/static/webfonts/fa-solid-900.eot");
+    src: url("/static/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), 
+         url("/static/webfonts/fa-solid-900.woff") format("woff"), 
+         url("/static/webfonts/fa-solid-900.ttf") format("truetype"), 
+         url("/static/webfonts/fa-solid-900.svg#micon") format("svg")
+}
+#head {
+    width: 100%;
+}
+#u1 {
+    display: flex;
+    margin: 10px 8%;
+    justify-content: flex-end
+}
+
+#u1  a {
+    text-decoration: none;
+    color: gray;
+    padding: 2px 8px;
+
+}
+#u1  a:hover {
+    text-decoration: underline;
+}
+
+#content {
+    width: 80%;
+    margin: 0 auto;
+}
+#content h1 {
+    text-align: center;
+    color:  #d31b29/*rgb(8,53,103) */
+}
+#content p {
+    text-align: center;
+}
+#buttons {
+    margin: 50px 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 20vw
+}
+.bt {
+    list-style-type: none;
+    display: block;
+    background-color: white;
+    width: 24%;
+    /* height: 24vw; */
+    margin: 1%;
+    border: solid 1px lightgray;
+    padding: 40px;
+}
+.bt:hover {
+    -webkit-box-shadow: 1px 0 5px rgb(0 0 0 / 40%);
+    box-shadow: 1px 0 5px rgb(0 0 0 / 40%);
+
+}
+
+.bt a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* background-color: sandybrown; */
+    font-family: "fontawesome";
+    color: black;
+    text-decoration: none;
+}
+
+.bt a .desc {
+    font-size: 30px;
+    margin-top: 60px;
+}
+#footer {
+    width: 100%;
+    background-color: blue;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+}
+
+#footer p{
+    color: white
+}
+
+.fas {
+    font-size: 90px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+}
+
+.fa-chart-pie {
+    color: greenyellow;
+}
+.fa-chart-area {
+    color: pink
+}
+.fa-chart-bar {
+    color: rgb(54, 185, 241)
+}
+.fa-users {
+    color: orange;
+}

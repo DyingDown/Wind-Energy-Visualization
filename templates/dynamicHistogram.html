@@ -8,11 +8,25 @@
 	<!-- 引入jquery -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
 	<!-- 引入 echarts.js -->
 	<script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.js"></script>
 </head>
  
 <body style="height: 100%; margin: 0">
+    <div id="wrapper">
+        <div id="head">
+            <div class="head_wrapper">
+              <div id="u1">
+                <a class="mnav" href="/pieChart/">饼状图</a></a>
+                <a class="mnav" href="/stack/">堆叠图</a></a>
+                <a class="mnav" href="/histogram/">柱状图</a></a>
+                <a class="bri" href="/" name="tj_briicon" style="display: block;">首页</a>
+              </div>
+            </div>
+        </div>
+    </div>
+	<!-- <div class="flourish-embed flourish-chart" data-src="visualisation/7935580"><script src="https://public.flourish.studio/resources/embed.js"></script></div> -->
 	<div id="container" style="height: 100%"></div>
  
  
@@ -35,7 +49,7 @@
 		];
  
 		$.when(
-		    $.getJSON('data.json')
+		    $.getJSON('https://raw.githubusercontent.com/DyingDown/Wind-Energy-Visualization/main/data/data.json')
 		).done(function (res) {
 		    var data = res;
 		    var years = [];
@@ -50,7 +64,7 @@
 		            return '';
 		        }
 		        return (flags.find(function (item) {
-		            return item.country === countryName;
+		            return item.name === countryName;
 		        }) || {}).emoji;
 		    }
 		    var startIndex = 10;
@@ -73,7 +87,7 @@
 		        },
 		        dataset: {
 		            source: data.slice(1).filter(function (d) {
-		                return d[4] === startYear;
+		                return d[2] === startYear;
 		            })
 		        },
 		        yAxis: {
