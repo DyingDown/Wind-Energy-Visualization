@@ -80,7 +80,7 @@ body {
 }
 #footer {
     width: 100%;
-    background-color: rgb(4, 101, 165);
+    background-color: rgb(8,53,103);
     padding: 10px 0;
     position: fixed;
     bottom: 0;
@@ -99,10 +99,10 @@ body {
 }
 
 .fa-chart-pie {
-    color: rgb(11, 216, 11);
+    color: green;
 }
 .fa-chart-area {
-    color: pink
+    color: purple
 }
 .fa-chart-bar {
     color: rgb(54, 185, 241)
@@ -112,7 +112,7 @@ body {
 }
 
 .fa-chart-line {
-    color: rgb(187, 4, 187)
+    color: rgb(235, 140, 155)
 }
 
 .mem {
@@ -165,3 +165,14 @@ body {
     text-align: center;
 }
 
+.author {
+    text-decoration: none;
+    display: block;
+    width: 13%;
+    margin: auto
+}
+.author:hover{
+    
+    transform: scale(1.1);
+    /* background-color: lightgray; */
+}
